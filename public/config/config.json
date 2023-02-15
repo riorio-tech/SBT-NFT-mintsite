@@ -1,20 +1,20 @@
 {
-  "CONTRACT_ADDRESS": "0xa8c4bdfdb0b899da3e0013e29d7fabbe03a33a55",
-  "SCAN_LINK": "https://polygonscan.com/address/0xa8c4bdfdb0b899da3e0013e29d7fabbe03a33a55",
+  "CONTRACT_ADDRESS": "0xe105EAEe111751BdFC977c16b323ACCBC8c52413",
+  "SCAN_LINK": "https://goerli.etherscan.io/address/0xe105EAEe111751BdFC977c16b323ACCBC8c52413",
   "NETWORK": {
-    "NAME": "Polygon",
-    "SYMBOL": "Matic",
-    "ID": 137
+    "NAME": "Goerli",
+    "SYMBOL": "GOL",
+    "ID": 5
   },
-  "NFT_NAME": "Welcome to Onikon",
-  "SYMBOL": "WTO",
-  "MAX_SUPPLY": 200,
+  "NFT_NAME": "Akari",
+  "SYMBOL": "AKARI",
+  "MAX_SUPPLY": "∞",
   "WEI_COSTB": 10000000000000000000,
   "WEI_COST": 20000000000000000000,
-  "DISPLAY_COSTWLB": 10.0,
-  "DISPLAY_COST": 20.0,
+  "DISPLAY_COSTWL": "0.0",
+  "DISPLAY_COST": "0.0",
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "Opeansea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/welcometoonikon",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/",
   "SHOW_BACKGROUND": true
 }

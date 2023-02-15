@@ -4,7 +4,7 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-import { AudioPlayer } from "./AudioPlayer";
+
 import axios from 'axios';
 import fileDownload from 'js-file-download';
 
@@ -188,7 +188,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`ミントボタンを押してWELCOME TO ONIKONを手に入れてね`);
+  const [feedback, setFeedback] = useState(`ミントボタンを押して新世界SBTを手に入れてください`);
   const [mintAmount, setMintAmount] = useState(1);
   const [mintAmountB, setMintAmountB] = useState(1);
   const [minted, setminted] = useState(0);
@@ -207,7 +207,7 @@ function App() {
     },
     NFT_NAME: "",
     SYMBOL: "",
-    MAX_SUPPLY: 1,
+    MAX_SUPPLY: "∞",
     WEI_COST: 0,
     DISPLAY_COST: 0,
     DISPLAY_COSTWLB: 0,
@@ -218,7 +218,7 @@ function App() {
   });
 
   const handleClick = (url, filename) => {
-    alert("読むこむので少々お待ちください。");
+    alert("ロード中のため少々お待ちください。");
     axios.get(url, {
       responseType: 'blob',
     })
@@ -227,6 +227,9 @@ function App() {
     })
   }
 
+
+
+  
   const claimNFTsA = () => {
     let cost = 0;//価格を０に。0714(ふりっきー)
     let amount = wlA;
@@ -250,13 +253,13 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("ミント失敗（泣）もう一回やってみてね！");
+        setFeedback("ミント失敗！再度お試し下さい！");
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `わぁ!${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてね！`
+          `おめでとうございます！${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてください。`
         );
         setClaimingNft(true);
         checkMintedwlA();
@@ -287,13 +290,13 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("ミント失敗（泣）もう一回やってみてね！");
+        setFeedback("ミント失敗！再度お試し下さい！");
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `わぁ!${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてね！`
+          `おめでとうございます！${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてください。`
         );
         setClaimingNft(true);
         checkMintedwlB();
@@ -314,7 +317,7 @@ function App() {
     setFeedback(`${CONFIG.NFT_NAME}ミント中...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-    .psMint(amount)
+    .mint(amount)
     .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -324,19 +327,21 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        setFeedback("ミント失敗（泣）もう一回やってみてね！");
+        setFeedback("ミント失敗！再度お試し下さい！");
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `わぁ!${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてね！`
+          `おめでとうございます！${CONFIG.NFT_NAME}ミント成功!!自分のOpen seaで確認してみてください。`
         );
         setClaimingNft(false);
         checkMinted();
         // dispatch(fetchData(blockchain.account));
       });
   };
+
+
 
 
   const checkWlA = () => {
@@ -489,7 +494,7 @@ function App() {
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+            <StyledImg alt={"example"} src={"/config/images/side.png"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -513,11 +518,11 @@ function App() {
               }}
             >
                               <s.SpacerXSmall />
-                <s.TextDescription
+                {/* <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
                       <AudioPlayer></AudioPlayer>
-                </s.TextDescription>
+                </s.TextDescription> */}
 
 
               {data.totalSupply} / {CONFIG.MAX_SUPPLY}
@@ -559,25 +564,25 @@ function App() {
                 </s.TextTitle>
                 <s.SpacerXSmall />
 
-                <s.TextTitle
+                {/* <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  {"ホワイトリストB"}
+                  {"新世界DAOメンバー限定"}
                 </s.TextTitle>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  {CONFIG.DISPLAY_COSTWLB}{CONFIG.NETWORK.SYMBOL}{"(Max 1mint)"}
+                  {CONFIG.DISPLAY_COSTWL}{CONFIG.NETWORK.SYMBOL}{"(Max 1mint)"}
+                </s.TextTitle> */}
+                <s.TextTitle
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  {"新世界DAOメンバー限定ミント可能"}
                 </s.TextTitle>
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  {"パブリックセール"}
-                </s.TextTitle>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  {CONFIG.DISPLAY_COST}{CONFIG.NETWORK.SYMBOL}{"(Max 2mint)"}
+                  {"Freemint"}{"(Max 2mint)"}
                 </s.TextTitle>
                 <s.SpacerXSmall />
 
@@ -585,7 +590,7 @@ function App() {
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  +ガス代がかかるよ（時価）
+                  +ガス代（時価）
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
@@ -597,7 +602,7 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                      {CONFIG.NFT_NAME}が欲しかったら {CONFIG.NETWORK.NAME} networkにウォレットをつなげてね。
+                      {CONFIG.NFT_NAME}をミントしたい場合 {CONFIG.NETWORK.NAME} networkにウォレットをつなげて下さい。
                     </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledButton
@@ -686,7 +691,7 @@ function App() {
                           </s.Container>
                           </>                      
                             )}
-                         </>
+                        </>
                       ) : (
                       <>
                         <s.Container ai={"center"} jc={"center"} fd={"row"}>
@@ -987,7 +992,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/config/images/example.gif"}
+              src={"/config/images/side.png"}
               style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
@@ -1000,7 +1005,6 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            　　
           </s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription
@@ -1009,7 +1013,7 @@ function App() {
               color: "var(--primary-text)",
             }}
           >
-            　　
+          
           </s.TextDescription>
         </s.Container>
       </s.Container>
